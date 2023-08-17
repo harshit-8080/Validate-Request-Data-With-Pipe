@@ -1,23 +1,25 @@
+import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../Repository/user.repository';
 
+@Injectable()
 export class UserServices {
-  userRepo: UserRepository;
+  // constructor() {
+  //   //! In Nest, We don't create own dependencies inside of a constructor.
+  //   //! USE DI
+  //   this.userRepo = new UserRepository();
+  // }
 
-  constructor() {
-    //! In Nest, We don't create own dependencies inside of a constructor.
-    //! USE DI
-    this.userRepo = new UserRepository();
-  }
+  constructor(private UserRepository: UserRepository) {}
 
   async findOne(id: number) {
-    return this.userRepo.findOne(id);
+    return this.UserRepository.findOne(id);
   }
 
   async findAll() {
-    return this.userRepo.findAll();
+    return this.UserRepository.findAll();
   }
 
   async createUser(user: any) {
-    return this.userRepo.createUser(user);
+    return this.UserRepository.createUser(user);
   }
 }

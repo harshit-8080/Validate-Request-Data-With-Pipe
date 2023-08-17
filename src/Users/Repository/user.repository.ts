@@ -1,3 +1,5 @@
+import { Injectable } from '@nestjs/common';
+
 const UserData = [
   {
     id: 0,
@@ -25,6 +27,7 @@ const UserData = [
   },
 ];
 
+@Injectable()
 export class UserRepository {
   async findOne(id: number) {
     let user: any = {};

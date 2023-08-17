@@ -27,15 +27,14 @@ const UserData = [
 
 export class UserRepository {
   async findOne(id: number) {
-    console.log('inside findOne method');
-    console.log('id --> ', id);
-
-    for (let i = 0; i < UserData.length; i++) {
-      if (UserData[i]['id'] == id) {
-        return UserData[id];
+    let user: any = {};
+    UserData.forEach((item) => {
+      if (item.id == id) {
+        user = item;
+        return;
       }
-    }
-    return 'Not found';
+    });
+    return user;
   }
 
   async findAll() {
